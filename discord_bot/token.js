@@ -1,2 +1,2 @@
 export const token = "xxx.xxx.xxx";
-export const tid = "1036674449895862403";
+export const tid = "0000000000000000000";
