@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BilanciATOMICA!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">   
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mainview">
+        <h1 class="f ac m">BilanciATOMICA</h1>
+        <form class="f ww1" method="get" action="">
+            <input type="text" class="f" placeholder="CH4 + O2 -> CO2 + H2O..." name="reaction">
+            <button type="submit">✓</button>
+        </form>
+        <p class="kasokd">%s</p>
+        %b
+        <div class="ww1"><p class="kasokl">%f</p></div>
+    </div>
+    <script>
+        window.formula = JSON.parse('%q');
+        // Restricts input for the given textbox to the given inputFilter function.
+        function setInputFilter(textbox, inputFilter, errMsg) {
+            ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
+                textbox.addEventListener(event, function(e) {
+                if (inputFilter(this.value)) {
+                    // Accepted value
+                    if (["keydown","mousedown","focusout"].indexOf(e.type) >= 0){
+                    this.classList.remove("input-error");
+                    this.setCustomValidity("");
+                    }
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    // Rejected value - restore the previous one
+                    this.classList.add("input-error");
+                    this.setCustomValidity(errMsg);
+                    this.reportValidity();
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                    // Rejected value - nothing to restore
+                    this.value = "";
+                }
+                });
+            });
+        }
+        [].slice.call(document.getElementsByClassName("mas")).forEach((e) => {
+            setInputFilter(e, function(value) {
+                //azAZ09.
+                if(value.startsWith(".")) return false;
+                return /^\d*\.?\d*$/.test(value);
+            }, "La massa deve essere un numero");
+        });
+        
+        //detect focus out or enter
+        //also detect if focused on another input
+        async function detectFocusOutOrEnter(e){
+            if (e.type == "focusout" || e.type == "keydown" && e.key == "Enter"){
+                //disable all inputs
+                let originel = e.target;
+                if(originel.value == "") return;
+
+                console.log(e);
+                [].slice.call(document.getElementsByClassName("mas")).forEach((e) => {
+                    e.disabled = true;
+                    //also give it the class "input-disabled-shic"
+                    e.classList.add("input-disabled-shic");
+                });
+
+                async function server_call(_function, args){
+                    let res = await fetch("/"+_function+"?"+(new URLSearchParams(args)), {
+                        method: "GET"
+                    });
+                    if(!res.ok) alert("Errore nella richiesta: "+res.body());
+                    return await res.json();
+                }
+                
+                function round(value, decimals) {
+                    return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+                } 
+
+                function setCD(key_prefix, data) {
+                    let index = 1;
+                    for(const value of data){
+                        _val = round(value, 5);
+                        document.getElementById(key_prefix+(index++)).value = _val;
+                    }
+                }
+                function dislock() {
+                    [].slice.call(document.getElementsByClassName("mas")).forEach((e) => {
+                        e.disabled = false;
+                        //also give it the class "input-disabled-shic"
+                        e.classList.remove("input-disabled-shic");
+                    });
+                }
+
+                //check if el id starts with mindexblm
+                if(e.target && (e.target.id.startsWith("Lmindexbl") || e.target.id.startsWith("Rmindexbl"))) {
+                    let after_arrow = e.target.id.startsWith("Rmindexbl");
+                    let prefix = after_arrow ? "R" : "L";
+                    let suffix = e.target.id.slice(9, 10); //w or m
+                    let index = parseInt(e.target.id.slice(10))-1;
+                    let opType = suffix == "m" ? "balance_molar" : "balance_mass";
+                    let query = {};
+                    //if the thing changed is equal to the thing before, don't do anything
+                    if(window.result) {
+                        let target = window.result.reaction.molar[after_arrow?"right":"left"][index];
+                        if(suffix == "w") target = window.result.reaction.masses[after_arrow?"right":"left"][index];
+                        if(round(target, 3) == parseFloat(e.target.value)) return dislock();
+
+                    }
+                    window.result = await server_call(opType, {
+                        reaction: window.formula,
+                        index: index,
+                        afterArrow: after_arrow,
+                        amount: parseFloat(e.target.value)
+                    });
+                    if(!result.ok) {
+                        console.log("okfail", result);
+                        alert(result.message?result.message:"Errore sconosciuto");
+                        return dislock();
+                    }
+                    if(!result.reaction || !result.reaction.molar.right) {
+                        console.log("reactionfail", result, result.reaction, result.reaction.right);
+                        dislock();
+                        return alert("Errore sconosciuto");
+                    }
+
+                    setCD("Lmindexblm", result.reaction.molar.left);
+                    setCD("Rmindexblm", result.reaction.molar.right);
+                    setCD("Lmindexblw", result.reaction.masses.left);
+                    setCD("Rmindexblw", result.reaction.masses.right);
+                    //remove disabled
+                    dislock();
+                    console.log(result);
+                }
+            }
+        }
+        [].slice.call(document.getElementsByClassName("mas")).forEach((e) => {
+            e.addEventListener("focusout", detectFocusOutOrEnter);
+            e.addEventListener("keydown", detectFocusOutOrEnter);
+        });
+</script>
+</body>
+</html>

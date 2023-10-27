@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+}
+nndispl {display: none !important;}
+html {
+    min-height: 100%;
+    min-width: 100%;
+}
+body {
+    color: #fff;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: #08090f;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2379aaff' fill-opacity='0.21'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.mainview {
+    font-family: 'Inter', Arial, Calibri, sans-serif;
+    font-size: 24px;
+    max-width: 950px;
+    margin: 0 auto;
+    text-align: center;
+}
+.ac {
+    text-align: center;
+    font-weight: 400;
+}
+.m {
+    margin-top: 30px;
+}
+.f {
+    font-size: clamp(1rem, 10vw, 2rem);
+}
+.acl {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 90%;
+}
+.ww1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+form.ww1 input[type=text] {
+    padding: 0px;
+    border: 1px solid #79aaff;
+    float: left;
+    width: 80%;
+    max-height: 40px;
+    background: transparent;
+    backdrop-filter: blur(1px);
+    color: #fff;
+    border-radius: 5px 0 0 5px;
+    font-size: 24px;
+}
+
+/* Style the submit button */
+form.ww1 button {
+    float: left;
+    width: 7%;
+    text-align: center;
+    max-height: 40px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+    border-radius:  0 5px 5px 0;
+}
+
+form.ww1 button:hover {
+    background: #0b7dda;
+}
+
+/* Clear floats */
+form.ww1::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.kasokd {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 2.5vw, 4rem); 
+}
+.kasokl {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    font-size: clamp(1rem, 2.5vw, 2rem); 
+    margin-right: 10px;
+    text-align: left;
+}
+.mas {
+    border: 1px solid #79aaff;
+    background: transparent;
+    backdrop-filter: blur(1px);
+    color: #fff;
+    border-radius: 5px;
+    font-size: large;
+    width: 13%;
+    height: clamp(1.5rem, 2.5vw, 4rem);
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.cccwrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.input-disabled-shic {
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ce3434' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");    color: #ffffff;
+    border-radius: 5px;
+    font-size: large;
+    width: 13%;
+    height: clamp(1.5rem, 2.5vw, 4rem);
+    margin-right: 5px;
+    margin-left: 5px;
+    cursor: not-allowed;
+}
