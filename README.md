@@ -15,3 +15,5 @@ Link: [https://bilancia.shish.cat/](https://bilancia.shish.cat/)
 Per esecuzione server/background:
 
 `docker run --restart=unless-stopped -itd -p 127.0.0.1:9001:9001 bilancia`
+
+Questo software è rilasciato nel pubblico dominio.
