@@ -16,4 +16,5 @@ Per esecuzione server/background:
 
 `docker run --restart=unless-stopped -itd -p 127.0.0.1:9001:9001 bilancia`
 
-Questo software è rilasciato nel pubblico dominio.
+Questo software è rilasciato nel pubblico dominio.\
+Sviluppato nel Novembre 2022 per un progetto scolastico
